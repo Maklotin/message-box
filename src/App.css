@@ -66,3 +66,14 @@ h1 {
   transform: scale(1.1);
   cursor: pointer;
 }
+
+.beskjed_tittel, .topp_meldingboks p, .meldingboks p {
+  color: whitesmoke;
+}
+
+.topp_meldingboks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px;
+}
