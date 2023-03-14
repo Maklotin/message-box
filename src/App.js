@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-//import meldinger from 'meldinger.json';
+import meldinger from './meldinger.json';
 
 
 
@@ -22,7 +22,15 @@ const App = () => {
           <hr id="strek"></hr>
           <div id="viktig" class="meldingboks">
             <div class="melding">
-
+              <div class="topp_meldingboks">
+                <h3 class="beskjed_tittel">tittel</h3>
+                <div class="navn_og_kontor">
+                  <p class="navn">Navn Navnesen</p>
+                  <p>Sted, land</p>
+                </div>
+                <p>min/time dag/mnd/år</p>
+              </div>
+              <p>lorem ipsum sit dolor amet</p>
             </div>
           </div>
           <div id="litt_viktig" class="meldingboks">
@@ -47,7 +55,7 @@ const App = () => {
   const NyBeskjed = () => {
     return (
       <>
-      <h1>Ny beskjed</h1>
+        <h1>Ny beskjed</h1>
       </>
     );
   }
