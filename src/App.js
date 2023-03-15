@@ -122,13 +122,13 @@ const App = () => {
         <h3>Logg Inn</h3>
         <form id="logg_inn">
           <input className='tekst_input' id="navn" type="text" placeholder='Navn Navnesen'></input>
-          <input className='tekst_input' id="passord" type="text" placeholder='Passord'></input>
+          <input className='tekst_input' id="passord" type="password" placeholder='Passord'></input>
           <input type="submit" id="logg_inn_knapp" className="knapp2" value="Logg Inn" ></input>
         </form>
         <h3>Registrer Bruker</h3>
         <form id="registrer_bruker">
           <input className='tekst_input' id="ny_navn" type="text" placeholder='Navn Navnesen'></input>
-          <input className='tekst_input' id="ny_passord" type="text" placeholder='Passord'></input>
+          <input className='tekst_input' id="ny_passord" type="password" placeholder='Passord'></input>
           <input className='tekst_input' id="ny_kontor" type="text" placeholder='Kontor (By, Land)'></input>
           <input type="submit" id="reg_bruker_knapp" className="knapp2" value="Registrer Bruker"></input>
         </form>
@@ -141,7 +141,7 @@ const App = () => {
   return (
     <>
       {/* Bytter sider */}
-      {aktivSide === 'MsgBoard' ? <MsgBoard /> : <NBikkeLoggetInn /> /*? aktivSide === "NBLoggetInn" : <NBLoggetInn />*/}
+      {aktivSide === 'MsgBoard' ? <MsgBoard /> : <NBikkeLoggetInn />,  aktivSide === "NBLoggetInn" ? <NBLoggetInn /> : <NBikkeLoggetInn />}
     </>
   );
 }
