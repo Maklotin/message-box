@@ -1,30 +1,32 @@
 {
-    "priority": 1,
-    "members": [
-      {
-        "name": "Mikkel Huth Andersen",
-        "Office": "Central African Republic",
-        "time": "Veldig god spørsmål",
-        "user_id": "001" 
-      },
-      {
-        "name": "Iiulian Simbotim",
-        "office": "Bucharest, Romania",
-        "time": "Veldig god spørsmål",
-        "user_id": "002" 
-      },
-      {
-            "name": "Jonathan Oyewumi",
-            "office": "Pyongyang, North Korea",
-            "time": "Veldig god spørsmål",
-            "user_id": "003" 
-          },
-          {
-            "name": "Hasbullah ",
-            "office": "Dagestan, Russia",
-            "time": "Veldig god spørsmål",
-            "user_id": "004" 
-          }
-    ]
-  }
-  
+  "important": [
+    {
+      "name": "Mikkel Huth Andersen",
+      "Office": "Central African Republic",
+      "time": "Veldig god spørsmål",
+      "user_id": "001"
+    },
+    {
+      "name": "Iulian Simbotim",
+      "office": "Bucharest, Romania",
+      "time": "Veldig god spørsmål",
+      "user_id": "002"
+    }
+  ],
+  "kinda_important": [
+    {
+      "name": "Jonathan Oyewumi",
+      "office": "Pyongyang, North Korea",
+      "time": "Veldig god spørsmål",
+      "user_id": "003"
+    }
+  ],
+  "unimportant": [
+    {
+      "name": "Hasbullah ",
+      "office": "Dagestan, Russia",
+      "time": "Veldig god spørsmål",
+      "user_id": "004"
+    }
+  ]
+}

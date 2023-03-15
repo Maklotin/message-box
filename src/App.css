@@ -6,7 +6,7 @@ h1 {
   color: whitesmoke;
 }
 
-#innhold {
+.innhold {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +22,7 @@ h1 {
 
 
 
-#strek{
+#strek {
   color: white;
   width: 50%;
 }
@@ -33,7 +33,7 @@ h1 {
   margin: 15px;
 }
 
-#viktig{
+#viktig {
   border: 5px solid red;
   box-shadow: 0px 0px 20px 5px red;
 
@@ -67,7 +67,9 @@ h1 {
   cursor: pointer;
 }
 
-.beskjed_tittel, .topp_meldingboks p, .meldingboks p {
+.beskjed_tittel,
+.topp_meldingboks p,
+.meldingboks p {
   color: whitesmoke;
 }
 
@@ -76,4 +78,45 @@ h1 {
   flex-direction: row;
   justify-content: space-between;
   margin: 20px;
+}
+
+#selve_beskjed {
+  margin: 15px;
+  height: 9vh;
+}
+
+#lag_ny_beskjed_boks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+#filter_beskjeder {
+  text-align: center;
+}
+
+#tekstboks {
+  width: 50vh;
+  max-width: 50vh;
+  min-width: 50vh;
+  height: 30vh;
+  min-height: 30vh;
+  background-color: rgb(20, 20, 20);
+  border: 2px solid red;
+  color: red;
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  box-shadow: 0px 0px 0px red;
+  transition: all 0.2s ease;
+}
+
+#tekstboks:hover {
+  box-shadow: 0px 0px 4px red;
+}
+
+#tekstboks:active {
+  box-shadow: 0px 0px 4px red;
 }
