@@ -2,12 +2,11 @@ import './App.css';
 import { useState } from 'react';
 import meldinger from './meldinger.json';
 import forfattere from './folk.json'
-import Database from './backend/database';
 
-console.log(db.families.find( { user_id: "001" } ) )
+
 
 const App = () => {
-  const [aktivSide, setAktivSide] = useState("MsgBoard");
+
 
 
   const MsgBoard = () => {
@@ -33,22 +32,22 @@ const App = () => {
 
         <div className="innhold">
           <div id="topp">
-            <select class="knapp" id="filter_beskjeder">
+            <select className="knapp" id="filter_beskjeder">
               <option>Filter</option>
               <option id="important">viktig</option>
               <option id="kinda_important">litt viktig</option>
               <option id="unimportant">ikke viktig</option>
             </select>
             <h1 id="overskrift">Beskjeder</h1>
-            <button id="ny_beskjed" class="knapp" onClick={() => setAktivSide("NyBeskjed")}>Ny beskjed</button>
+            <button id="ny_beskjed" className="knapp" onClick={() => setAktivSide(NBLoggetInn)}>Ny beskjed</button>
           </div>
           <hr id="strek"></hr>
-          <div id="viktig" class="meldingboks">
-            <div class="melding">
-              <div class="topp_meldingboks">
-                <h3 class="beskjed_tittel">tittel</h3>
-                <div class="navn_og_kontor">
-                  <p class="navn">{nyViktigNavn}</p>
+          <div id="viktig" className="meldingboks">
+            <div className="melding">
+              <div className="topp_meldingboks">
+                <h3 className="beskjed_tittel">tittel</h3>
+                <div className="navn_og_kontor">
+                  <p className="navn">{nyViktigNavn}</p>
                   <p>{nyViktigKontor}</p>
                 </div>
                 <p id="tid">{nyViktigTid}</p>
@@ -56,12 +55,12 @@ const App = () => {
               <p id="selve_beskjed">lorem ipsum sit dolor amet</p>
             </div>
           </div>
-          <div id="litt_viktig" class="meldingboks">
-            <div class="melding">
-              <div class="topp_meldingboks">
-                <h3 class="beskjed_tittel">tittel</h3>
-                <div class="navn_og_kontor">
-                  <p class="navn">{nyLviktigNavn}</p>
+          <div id="litt_viktig" className="meldingboks">
+            <div className="melding">
+              <div className="topp_meldingboks">
+                <h3 className="beskjed_tittel">tittel</h3>
+                <div className="navn_og_kontor">
+                  <p className="navn">{nyLviktigNavn}</p>
                   <p>{nyLviktigKontor}</p>
                 </div>
                 <p id="tid">{nyLviktigTid}</p>
@@ -70,12 +69,12 @@ const App = () => {
             </div>
 
           </div>
-          <div id="lite_viktig" class="meldingboks">
-            <div class="melding">
-              <div class="topp_meldingboks">
-                <h3 class="beskjed_tittel">tittel</h3>
-                <div class="navn_og_kontor">
-                  <p class="navn">{nyIkkeViktigNavn}</p>
+          <div id="lite_viktig" className="meldingboks">
+            <div className="melding">
+              <div className="topp_meldingboks">
+                <h3 className="beskjed_tittel">tittel</h3>
+                <div className="navn_og_kontor">
+                  <p className="navn">{nyIkkeViktigNavn}</p>
                   <p>{nyIkkeViktigKontor}</p>
                 </div>
                 <p id="tid">{nyIkkeViktigTid}</p>
@@ -107,7 +106,7 @@ const App = () => {
           </div>
           <p>Skriv en ny beskjed til de andre.</p>
           <div id="lag_ny_beskjed_boks">
-            <input type="text"></input>
+            <input className='tekst_input' placeholder='Overskrift/Tittel' type="text"></input>
           </div>
           <textarea id="tekstboks"></textarea>
         </div>
@@ -124,7 +123,7 @@ const App = () => {
         <form id="logg_inn">
           <input className='tekst_input' id="navn" type="text" placeholder='Navn Navnesen'></input>
           <input className='tekst_input' id="passord" type="password" placeholder='Passord'></input>
-          <input type="submit" id="logg_inn_knapp" className="knapp2" value="Logg Inn" ></input>
+          <input type="submit" id="logg_inn_knapp" className="knapp2" value="Logg Inn" onClick={() => setAktivSide(NBLoggetInn)}></input>
         </form>
         <h3>Registrer Bruker</h3>
         <form id="registrer_bruker">
@@ -138,11 +137,13 @@ const App = () => {
       </>
     )
   }
+  const [aktivSide, setAktivSide] = useState(MsgBoard);
+  const [loggetInn, setLoggetInn] = useState(NBikkeLoggetInn);
 
   return (
     <>
       {/* Bytter sider */}
-      {aktivSide === 'MsgBoard' ? <MsgBoard /> : <NBikkeLoggetInn />,  aktivSide === "NBLoggetInn" ? <NBLoggetInn /> : <NBikkeLoggetInn />}
+      {aktivSide}
     </>
   );
 }
