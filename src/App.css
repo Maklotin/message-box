@@ -54,7 +54,7 @@ h1 {
   width: 10vh;
   height: 5vh;
   margin: 20px;
-  font-size: 20px;
+  font-size: 1.5vh;
   font-weight: bold;
   background-color: red;
   box-shadow: 0px 0px darkred;
@@ -71,6 +71,7 @@ h1 {
 .topp_meldingboks p,
 .meldingboks p {
   color: whitesmoke;
+  font-size: 1.5vh;
 }
 
 .topp_meldingboks {
@@ -106,7 +107,7 @@ h1 {
   background-color: rgb(20, 20, 20);
   border: 2px solid red;
   color: red;
-  font-size: 20px;
+  font-size: 20vh;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   box-shadow: 0px 0px 0px red;
