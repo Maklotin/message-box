@@ -2,7 +2,7 @@ body {
   background-color: rgb(20, 20, 20);
 }
 
-h1 {
+h1, h3 {
   color: whitesmoke;
 }
 
@@ -54,7 +54,7 @@ h1 {
   width: 10vh;
   height: 5vh;
   margin: 20px;
-  font-size: 20px;
+  font-size: 1.5vh;
   font-weight: bold;
   background-color: red;
   box-shadow: 0px 0px darkred;
@@ -67,10 +67,28 @@ h1 {
   cursor: pointer;
 }
 
+.knapp2 {
+  border: 0px;
+  height: 5vh;
+  margin: 20px;
+  font-size: 1.5vh;
+  font-weight: bold;
+  background-color: red;
+  box-shadow: 0px 0px darkred;
+  transition: all 0.2s ease;
+}
+
+.knapp2:hover {
+  box-shadow: 5px 5px darkred;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
 .beskjed_tittel,
 .topp_meldingboks p,
 .meldingboks p {
   color: whitesmoke;
+  font-size: 1.5vh;
 }
 
 .topp_meldingboks {
@@ -106,7 +124,7 @@ h1 {
   background-color: rgb(20, 20, 20);
   border: 2px solid red;
   color: red;
-  font-size: 20px;
+  font-size: 20vh;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   box-shadow: 0px 0px 0px red;
@@ -119,4 +137,22 @@ h1 {
 
 #tekstboks:active {
   box-shadow: 0px 0px 4px red;
+}
+
+#logg_inn, #registrer_bruker {
+  display: flex;
+  flex-direction: column;
+}
+
+.tekst_input {
+  background-color: rgb(20, 20, 20);
+  border: none;
+  color: red;
+  border-bottom: 2px solid red;
+  margin: 20px;
+  font-size: 2vh;
+}
+
+.tekst_input:focus {
+  outline: none;
 }
