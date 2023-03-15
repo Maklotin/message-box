@@ -2,8 +2,9 @@ import './App.css';
 import { useState } from 'react';
 import meldinger from './meldinger.json';
 import forfattere from './folk.json'
+import Database from './backend/database';
 
-
+console.log(db.families.find( { user_id: "001" } ) )
 
 const App = () => {
   const [aktivSide, setAktivSide] = useState("MsgBoard");
