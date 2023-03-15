@@ -34,12 +34,12 @@ const App = () => {
           <div id="topp">
             <select className="knapp" id="filter_beskjeder">
               <option>Filter</option>
-              <option id="important">viktig</option>
-              <option id="kinda_important">litt viktig</option>
-              <option id="unimportant">ikke viktig</option>
+              <option id="important">Viktig</option>
+              <option id="kinda_important">Litt viktig</option>
+              <option id="unimportant">Ikke viktig</option>
             </select>
             <h1 id="overskrift">Beskjeder</h1>
-            <button id="ny_beskjed" className="knapp" onClick={() => setAktivSide(NBLoggetInn)}>Ny beskjed</button>
+            <button id="ny_beskjed" className="knapp" onClick={() => setAktivSide(NBikkeLoggetInn)}>Ny beskjed</button>
           </div>
           <hr id="strek"></hr>
           <div id="viktig" className="meldingboks">
@@ -104,11 +104,15 @@ const App = () => {
             <h1>Skriv ny beskjed</h1>
             <hr id="strek"></hr>
           </div>
-          <p>Skriv en ny beskjed til de andre.</p>
-          <div id="lag_ny_beskjed_boks">
-            <input className='tekst_input' placeholder='Overskrift/Tittel' type="text"></input>
-          </div>
-          <textarea id="tekstboks"></textarea>
+          <form id="send_beskjed">
+            <p>Skriv en ny beskjed til de andre.</p>
+            <div id="lag_ny_beskjed_boks">
+              <input className='tekst_input' placeholder='Overskrift/Tittel' type="text"></input>
+            </div>
+            <textarea id="tekstboks"></textarea>
+            <input type="submit" className='knapp' value="Send beskjed"></input>
+            <button className='knapp' onClick={() => setAktivSide(MsgBoard)}>Avrbyt</button>
+          </form>
         </div>
       </>
     );
@@ -117,23 +121,23 @@ const App = () => {
   const NBikkeLoggetInn = () => {
     return (
       <>
-      <div className="innhold">
-        <h1>Vennligst logg inn eller registrer ny bruker</h1>
-        <h3>Logg Inn</h3>
-        <form id="logg_inn">
-          <input className='tekst_input' id="navn" type="text" placeholder='Navn Navnesen'></input>
-          <input className='tekst_input' id="passord" type="password" placeholder='Passord'></input>
-          <input type="submit" id="logg_inn_knapp" className="knapp2" value="Logg Inn" onClick={() => setAktivSide(NBLoggetInn)}></input>
-        </form>
-        <h3>Registrer Bruker</h3>
-        <form id="registrer_bruker">
-          <input className='tekst_input' id="ny_navn" type="text" placeholder='Navn Navnesen'></input>
-          <input className='tekst_input' id="ny_passord" type="password" placeholder='Passord'></input>
-          <input className='tekst_input' id="ny_kontor" type="text" placeholder='Kontor (By, Land)'></input>
-          <input type="submit" id="reg_bruker_knapp" className="knapp2" value="Registrer Bruker"></input>
-        </form>
+        <div className="innhold">
+          <h1>Vennligst logg inn eller registrer ny bruker</h1>
+          <h3>Logg Inn</h3>
+          <form id="logg_inn">
+            <input className='tekst_input' id="navn" type="text" placeholder='Navn Navnesen'></input>
+            <input className='tekst_input' id="passord" type="password" placeholder='Passord'></input>
+            <input type="submit" id="logg_inn_knapp" className="knapp" value="Logg Inn" onClick={() => setAktivSide(NBLoggetInn)}></input>
+          </form>
+          <h3>Registrer Bruker</h3>
+          <form id="registrer_bruker">
+            <input className='tekst_input' id="ny_navn" type="text" placeholder='Navn Navnesen'></input>
+            <input className='tekst_input' id="ny_passord" type="password" placeholder='Passord'></input>
+            <input className='tekst_input' id="ny_kontor" type="text" placeholder='Kontor (By, Land)'></input>
+            <input type="submit" id="reg_bruker_knapp" className="knapp" value="Registrer Bruker"></input>
+          </form>
 
-      </div>
+        </div>
       </>
     )
   }
