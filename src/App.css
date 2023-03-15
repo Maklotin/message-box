@@ -155,3 +155,8 @@ h1, h3, p {
   display: flex;
   flex-direction: column;
 }
+
+option {
+  background-color: rgb(20, 20, 20);
+  border: 2px solid red;
+}
