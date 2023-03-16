@@ -2,8 +2,91 @@ import './App.css';
 import { useState } from 'react';
 import meldinger from './meldinger.json';
 import forfattere from './folk.json'
+import kontorer from './kontor.json'
+
+function RegistrerBruker() {
+
+  const [brukernavn, setBrukernavn] = useState('');
+  const [passord, setPassord] = useState('');
+  const [kontor, setKontor] = useState('');
+
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleBrukernavn = (e) => {
+    setBrukernavn(e.target.value);
+    setSubmitted(false);
+  };
+
+  const handlePassord = (e) => {
+    setPassord(e.target.value);
+    setSubmitted(false);
+
+  }
+
+  const handleKontor = (e) => {
+    setKontor(e.target.value);
+    setSubmitted(false)
+  }
 
 
+
+  var kontorerLand = []
+  for (let i = 0; i < kontorer.length; i++) {
+    kontorerLand.push(kontorer[i].country)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("navn: " + brukernavn + ", passord: " + passord + ", kontor: " + kontor)
+
+    if (brukernavn === '' || passord === '' || kontor === '') {
+      setError(true);
+    } else {
+      setSubmitted(true);
+      setError(false);
+    }
+  }
+
+  const SuccessMessage = () => {
+    return (
+      <div
+        className="success" style={
+          { display: submitted ? '' : 'none', }
+        }>
+        <h3>{brukernavn} har blitt registrert registrert</h3>
+
+      </div>
+    );
+  }
+
+  const ErrorMessage = () => {
+    return (
+      <div className='error'
+        style={{ display: error ? '' : 'none', }}>
+        <h3>Ett problem oppsto, sørg for at du har fylt ut alle feltene</h3>
+      </div>
+    )
+  }
+  return (
+    <>
+      <div className='messages'>
+        {ErrorMessage()}
+        {SuccessMessage()}
+      </div>
+      <form id="registrer_bruker">
+        <input className='tekst_input' id="ny_navn" type="text" onChange={handleBrukernavn} value={brukernavn} placeholder='Navn Navnesen'></input>
+        <input className='tekst_input' id="ny_passord" type="password" onChange={handlePassord} value={passord} placeholder='Passord'></input>
+        <h3 id="tekst_kontor">Velg Kontor</h3>
+        <select className='knapp' id="velg_kontor" onChange={handleKontor} value={kontor}>
+          {kontorerLand.map((x, y) => <option key={y}>{x}</option>)}
+        </select>
+        <input type="submit" id="reg_bruker_knapp" className="knapp" value="Registrer Bruker" onClick={handleSubmit}></input>
+      </form>
+    </>
+  )
+
+}
 
 const App = () => {
 
@@ -119,6 +202,8 @@ const App = () => {
   }
 
   const NBikkeLoggetInn = () => {
+
+
     return (
       <>
         <div className="innhold">
@@ -130,12 +215,8 @@ const App = () => {
             <input type="submit" id="logg_inn_knapp" className="knapp" value="Logg Inn" onClick={() => setAktivSide(NBLoggetInn)}></input>
           </form>
           <h3>Registrer Bruker</h3>
-          <form id="registrer_bruker">
-            <input className='tekst_input' id="ny_navn" type="text" placeholder='Navn Navnesen'></input>
-            <input className='tekst_input' id="ny_passord" type="password" placeholder='Passord'></input>
-            <input className='tekst_input' id="ny_kontor" type="text" placeholder='Kontor (By, Land)'></input>
-            <input type="submit" id="reg_bruker_knapp" className="knapp" value="Registrer Bruker"></input>
-          </form>
+          <RegistrerBruker />
+          <button className='knapp' onClick={() => setAktivSide(MsgBoard)}>Avrbyt</button>
 
         </div>
       </>

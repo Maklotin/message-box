@@ -160,3 +160,8 @@ option {
   background-color: rgb(20, 20, 20);
   border: 2px solid red;
 }
+
+#tekst_kontor {
+  text-align: center;
+}
+
