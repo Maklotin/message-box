@@ -1,8 +1,10 @@
 import './App.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import meldinger from './meldinger.json';
 import forfattere from './folk.json'
 import kontorer from './kontor.json'
+
+
 
 function RegistrerBruker() {
 
@@ -45,6 +47,8 @@ function RegistrerBruker() {
     } else {
       setSubmitted(true);
       setError(false);
+
+      
     }
   }
 
@@ -54,7 +58,7 @@ function RegistrerBruker() {
         className="success" style={
           { display: submitted ? '' : 'none', }
         }>
-        <h3>{brukernavn} har blitt registrert registrert</h3>
+        <h3>{brukernavn} har blitt registrert</h3>
 
       </div>
     );
@@ -68,6 +72,10 @@ function RegistrerBruker() {
       </div>
     )
   }
+
+  var brukerInfo = [brukernavn, passord, kontor]
+
+
   return (
     <>
       <div className='messages'>
@@ -83,10 +91,14 @@ function RegistrerBruker() {
         </select>
         <input type="submit" id="reg_bruker_knapp" className="knapp" value="Registrer Bruker" onClick={handleSubmit}></input>
       </form>
+      {JSON.stringify(brukerInfo)}
     </>
   )
 
+
+
 }
+
 
 const App = () => {
 
