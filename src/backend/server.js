@@ -7,18 +7,6 @@ const app = express();
 
 app.use(cors())
 
-app.get('/', cors(), async (req, res) => {
-    const antallProdukter = 10;
-    const page = req.query.url
-    const response = await axios.get(page);
-
-    console.log(page)
-
-    const html = response.data;
-
-    const $ = cheerio.load(html);
-
-})
 
 const uri =
   "mongodb+srv://joklatin:kuben@jafar.0uqjftd.mongodb.net/test";
@@ -34,6 +22,6 @@ async function connect() {
 
 connect();
 
-app.listen(8000, () => {
+app.listen(8001, () => {
   console.log("Server started on port 8000");
 });

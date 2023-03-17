@@ -1,8 +1,10 @@
 import './App.css';
 import React, { useState } from 'react';
 import meldinger from './meldinger.json';
-import forfattere from './folk.json'
-import kontorer from './kontor.json'
+import forfattere from './folk.json';
+import kontorer from './kontor.json';
+//import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 
 
 
@@ -41,6 +43,14 @@ function RegistrerBruker() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("navn: " + brukernavn + ", passord: " + passord + ", kontor: " + kontor)
+/*
+    fetch('http://localhost:8000/database', {
+      method: 'POST',
+      body: JSON.stringify(brukerInfo)
+    }).then(function(response) {
+      console.log(response)
+      return response.json();
+    })*/
 
     if (brukernavn === '' || passord === '' || kontor === '') {
       setError(true);
