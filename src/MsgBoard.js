@@ -15,17 +15,14 @@ const MsgBoard = () => {
     onValue(messagesRef, (snapshot) => {
       const messagesObject = snapshot.val();
       if (messagesObject) {
-        const messagesList = Object.keys(messagesObject).map((key) => ({
-          ...messagesObject[key],
-          uuid: key,
-        }));
-        messagesList.sort((a, b) => b.createdAt - a.createdAt);
+        const messagesList = Object.keys(messagesObject)
+          .map((key) => ({ ...messagesObject[key], uuid: key }))
+          .sort((a, b) => b.timestamp - a.timestamp || b.uuid.localeCompare(a.uuid));
         setMessages(messagesList);
       }
     });
     return () => off(messagesRef);
   }, []);
-
   
 
   return (
