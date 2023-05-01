@@ -1,11 +1,12 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import meldinger from './meldinger.json';
 import forfattere from './folk.json';
 import kontorer from './kontor.json';
-//import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
-
+import {db} from './firebase';
+import { uid } from 'uid';
+import { set, ref, onValue } from "firebase/database"
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
 function RegistrerBruker() {
@@ -14,8 +15,25 @@ function RegistrerBruker() {
   const [passord, setPassord] = useState('');
   const [kontor, setKontor] = useState('');
 
+
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
+
+  const [alleBrukernavn, setAlleBrukernavn] = useState([])
+
+  //read
+  useEffect(() => {
+    onValue(ref(db), (snapshot) => {
+      const data = snapshot.val();
+      //!== betyr om "data" IKKE har verdi "null" så gjør følgende:
+      if (data !== null) {
+        Object.values(data).map((brukernavn) => {
+          setAlleBrukernavn((oldArray) => [...oldArray, brukernavn]);
+        })
+      }
+    })
+  }, [])
+
 
   const handleBrukernavn = (e) => {
     setBrukernavn(e.target.value);
@@ -40,27 +58,6 @@ function RegistrerBruker() {
     kontorerLand.push(kontorer[i].country)
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("navn: " + brukernavn + ", passord: " + passord + ", kontor: " + kontor)
-/*
-    fetch('http://localhost:8000/database', {
-      method: 'POST',
-      body: JSON.stringify(brukerInfo)
-    }).then(function(response) {
-      console.log(response)
-      return response.json();
-    })*/
-
-    if (brukernavn === '' || passord === '' || kontor === '') {
-      setError(true);
-    } else {
-      setSubmitted(true);
-      setError(false);
-
-      
-    }
-  }
 
   const SuccessMessage = () => {
     return (
@@ -83,8 +80,46 @@ function RegistrerBruker() {
     )
   }
 
-  var brukerInfo = [brukernavn, passord, kontor]
+  //read
+  const handleLogin = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(brukernavn, passord)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  };
 
+  //create
+  const writeToDatabase = (e) => {
+    e.preventDefault()
+    console.log("navn: " + brukernavn + ", passord: " + passord + ", kontor: " + kontor)
+
+    if (brukernavn === '' || passord === '' || kontor === '') {
+      setError(true);
+    } else {
+      setError(false);
+      setSubmitted(true);
+
+      const uuid = uid()
+      set(ref(db, `/${uuid}`), {
+        brukernavn: brukernavn,
+        passord: passord,
+        kontor: kontor,
+        uuid: uuid,
+      })
+      
+    }
+    setBrukernavn("");
+    setPassord("");
+    setKontor("");
+  }
 
   return (
     <>
@@ -99,9 +134,8 @@ function RegistrerBruker() {
         <select className='knapp' id="velg_kontor" onChange={handleKontor} value={kontor}>
           {kontorerLand.map((x, y) => <option key={y}>{x}</option>)}
         </select>
-        <input type="submit" id="reg_bruker_knapp" className="knapp" value="Registrer Bruker" onClick={handleSubmit}></input>
+        <button id="reg_bruker_knapp" className="knapp" onClick={writeToDatabase}>Registrer Bruker</button>
       </form>
-      {JSON.stringify(brukerInfo)}
     </>
   )
 
@@ -202,6 +236,8 @@ const App = () => {
       console.log(alleForfattere)
     }
 
+
+
     return (
       <>
         <div className="innhold">
@@ -224,7 +260,6 @@ const App = () => {
   }
 
   const NBikkeLoggetInn = () => {
-
 
     return (
       <>
