@@ -174,3 +174,9 @@ option {
   color: yellow;
   text-shadow: 0px 0px 5px yellow;
 }
+
+#topp_meny {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
