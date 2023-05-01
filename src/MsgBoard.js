@@ -17,6 +17,7 @@ const MsgBoard = () => {
       if (messagesObject) {
         const messagesList = Object.keys(messagesObject)
           .map((key) => ({ ...messagesObject[key], uuid: key }))
+          //denne gjør slik at eldste melding ender på bunnen
           .sort((a, b) => b.timestamp - a.timestamp || b.uuid.localeCompare(a.uuid));
         setMessages(messagesList);
       }
