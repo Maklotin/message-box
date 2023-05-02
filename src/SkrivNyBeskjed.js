@@ -25,6 +25,7 @@ const SkrivNyBeskjed = () => {
     //create
     const writeToDatabase = (e) => {
       e.preventDefault()
+      const timestamp = Date.now()
       const uuid = uid()
       set(ref(db, `/${uuid}`), {
         tittel: tittel,
@@ -32,6 +33,7 @@ const SkrivNyBeskjed = () => {
         forfatter: forfatter,
         kontor: kontor,
         merke: merke,
+        timestamp: timestamp,
         uuid: uuid,
       })
       setTittel('')

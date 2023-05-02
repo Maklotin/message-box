@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { db } from './firebase';
 import { ref, onValue, off } from "firebase/database"
+import { v1 as uuidv1 } from 'uuid';
 
 
 
@@ -17,14 +18,12 @@ const MsgBoard = () => {
       if (messagesObject) {
         const messagesList = Object.keys(messagesObject)
           .map((key) => ({ ...messagesObject[key], uuid: key }))
-          //denne gjør slik at eldste melding ender på bunnen
-          .sort((a, b) => b.timestamp - a.timestamp || b.uuid.localeCompare(a.uuid));
+          .sort((a, b) => a.timestamp - b.timestamp);
         setMessages(messagesList);
       }
     });
     return () => off(messagesRef);
   }, []);
-  
 
   return (
     <>
@@ -41,8 +40,8 @@ const MsgBoard = () => {
                   <div className="topp_meldingboks">
                     <h3 className="beskjed_tittel">{message.tittel}</h3>
                     <div className="navn_og_kontor">
-                      <p className="navn">{message.forfatter}</p>
-                      <p>{message.kontor}</p>
+                      <p className="navn">Skrevet av: {message.forfatter}</p>
+                      <p>Kontor: {message.kontor}</p>
                     </div>
                   </div>
                   <p id="selve_beskjed">{message.innhold}</p>
